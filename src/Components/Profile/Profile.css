@@ -1,0 +1,34 @@
+.profile_photo {
+    width: 15%;
+    border-radius: 50%;
+}
+
+.profile_name {
+    margin-left: 5px;
+}
+
+.profile_follow {
+    font-size: 12px;
+    font-weight: 600;
+    color: #0095f6;
+}
+
+.MuiListItemText-primary, .profile_suggestion_header {
+    font-size: 13px!important;
+    font-weight: 600!important;
+}
+
+.profile_suggestion_header {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+}
+
+ul {
+    margin: 0!important;
+    padding: 0!important;
+}
+.MuiListItem-root {
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+}

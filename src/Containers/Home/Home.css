@@ -1,0 +1,19 @@
+.home {
+    display: flex;
+    width: 60%;
+    margin: 100px auto;
+}
+
+.home_card {
+    border: 1px solid #787878;
+}
+
+.home_left {
+    position: relative;
+    width: 500px;
+}
+
+.home_right {
+    position: fixed;
+    left: 810px;
+}
