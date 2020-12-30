@@ -3,3 +3,17 @@
     height: 200px;
     width: 100%;
 }
+
+.card_images {
+    width: 95%;
+}
+
+.card_action_button {
+    margin: 0 5px!important;
+}
+
+.card_actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px 15px 20px;
+}

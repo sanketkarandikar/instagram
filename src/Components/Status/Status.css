@@ -23,13 +23,18 @@
 
 .status_left_button {
     background-color: #fff!important;
-    top: 13px;
-   position: absolute;
+    top: 25px!important;
+    left: 15px!important;
+   position: absolute!important;
 }
 
 .status_right_button {
     background-color: #fff!important;
-    left: 410px;
-    top: 13px;
-    position: absolute;
+    left: 615px;
+    top: 25px;
+    position: absolute!important;
+}
+
+.MuiIconButton-root {
+    padding: 0px!important;
 }

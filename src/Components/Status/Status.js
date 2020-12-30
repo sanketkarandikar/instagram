@@ -11,6 +11,7 @@ function Status() {
 
     const scrollToLeft = () => {
         document.getElementById('content').scrollBy(-50, 0); // for left scroll
+        console.log('sssss');
     }
     return (
         <div className="status">

@@ -1,14 +1,65 @@
-import React from 'react';
+import React, { useState} from 'react';
 import './Login.css';
 import Button from '@material-ui/core/Button';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import { useHistory } from 'react-router-dom';
+import {db, auth} from '../../firebase/firebase';
+import { useStateValue } from '../../Store/StateProvider';
 
 function Login() {
     const history = useHistory();
-    const handleSubmit = () => {
-        history.push('/home');
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [user, setUser] = useState(null);
+    const [state, dispatch] = useStateValue();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(username, password);
+        auth.signInWithEmailAndPassword(username, password)
+        .then(user => {
+            if (user) {
+                dispatch({
+                    type: 'SET_USER',
+                    user
+                })
+            } else {
+                dispatch({
+                    type: 'SET_USER',
+                    user: null
+                })
+            }
+            history.push('/home');
+        })
+        .catch(err => alert(err.message));
     }
+
+    const handlePassword = (e) => {
+        setPassword(e.target.value);
+    }
+
+    const handleUsername = e => {
+        setUsername(e.target.value);
+    }
+
+    const handleSignup = () => {
+        console.log('signup clicked');
+        auth.createUserWithEmailAndPassword(username, password)
+        .then(user => {
+            console.log(user);
+            history.push('/home');
+        }).catch(err => alert(err.message));
+    }
+
+    useState(() => {
+        auth.onAuthStateChanged(authUser => {
+            if (authUser) {
+                setUser(authUser);
+            } else {
+                setUser(null);
+            }
+        })
+    })
     return (
         <div>
             <main className="login_main">
@@ -20,8 +71,8 @@ function Login() {
                     <div className="login_right_div">
                         <p className="login_heading">Instagram</p>
                         <form className="login-form" onSubmit={handleSubmit}>
-                            <input type="text" placeholder="Phone number, username, or email"/>
-                            <input type="password" placeholder="Password"/>
+                            <input onChange={(e) => handleUsername(e)} value={username} type="text" placeholder="Phone number, username, or email"/>
+                            <input onChange={(e) => handlePassword(e)} type="password" placeholder="Password"/>
                             <Button type="submit" className='login_button' variant="contained" color="primary">
                                 Log In
                             </Button>
@@ -37,7 +88,7 @@ function Login() {
                     </div>
                     <div className="login_register">
                         <span>Don't have an account? </span>
-                        <span className="login_signup">&nbsp;Sign up</span>
+                        <span onClick={handleSignup} className="login_signup">&nbsp;Sign up</span>
                     </div>
                     <p>Get the app.</p>
                     <img className="login_images" src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_english-en.png/180ae7a0bcf7.png"/>

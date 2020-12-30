@@ -120,6 +120,7 @@
   }
 
   .login_signup {
+      cursor: pointer;
     color: #0095f6;
     color: rgba(var(--d69,0,149,246),1);
   }
